@@ -1,0 +1,16 @@
+name: WIR3
+channels:
+  - plotly
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - django=2.2.5
+  - pip=19.3.1=py36_0
+  - plotly=4.4.1
+  - plotly-orca=1.2.1
+  - psutil=5.6.7
+  - python=3.6.9
+  - requests=2.22.0
+  - scanpy=1.4.4.post1
+  - urllib3=1.25.7
