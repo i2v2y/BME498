@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar #633974 w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="color:light-grey;">About Us</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large" style="color:light-grey;">About Us</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-center" style="background-color: #633974 ; padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo" style="color:white;">WIR3</h1>
+  <p class="w3-xlarge" style="color:white;">- A Single Cell Analysis Solution -</p>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-center">
+      <h1>Drag and Drop your files here</h1>
+    </div>
+	<div class="w3-center">
+		<form class="box" method="post" action="" enctype="multipart/form-data">
+		  <div class="box__input">
+			<input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+		  </div>
+		</form>
+	</div>
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-center">
+      <h1>Select Pre-processing Steps</h1>
+		  <div class="w3-quarter">
+			<button class="pp_button">Quality Control</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">ScPipe</option>
+			  </select>
+			  </div>
+		  </div>
+		  <div class="w3-quarter">
+			<button class="pp_button">Alignment</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">Rsubread</option>
+			  </select>
+			  </div>
+		  </div>
+		  <div class="w3-quarter">
+			<button class="pp_button">Normalization</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">Linnorm</option>
+				<option value="1">Scran</option>
+				<option value="2">Scone</option>
+			  </select>
+			  </div>
+		  </div>
+		  <div class="w3-quarter">
+			<button class="pp_button">Dimension Reduction</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">PCA</option>
+				<option value="1">t-SNE</option>
+			  </select>
+			  </div>
+		  </div>		  
+    </div>
+  </div>
+</div>
+
+<!-- Third Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-center">
+      <h1>Select Analyzation Step and Preferred Tools</h1>
+		  <div class="w3-quarter">
+			<button class="pp_button">Clustering</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">Seurat 0.6:</option>
+				<option value="1">RacelD3</option>
+				<option value="2">Seurat_pipe</option>
+			  </select>
+			  </div>
+		  </div>
+		  <div class="w3-quarter">
+			<button class="pp_button">Differential Gene Expression</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">Linnorm</option>
+				<option value="1">KNN-smoothing</option>
+				<option value="2">Linnorm+Drimpute</option>
+			  </select>
+			  </div>
+		  </div>
+		  <div class="w3-quarter">
+			<button class="pp_button">Cell Annotation</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">scMerge_s</option>
+				<option value="1">seMerge_us</option>
+				<option value="2">MNNs</option>
+			  </select>
+			  </div>
+		  </div>
+		  <div class="w3-quarter">
+			<button class="pp_button">Trajectory Inference</button>
+			  <div style="width: 100%">
+			  <select>
+				<option value="0">PCA</option>
+				<option value="1">Monocle2_DDRTree</option>
+				<option value="2">TSCAN</option>
+			  </select>
+			  </div>
+		  </div>		  
+    </div>
+  </div>
+</div>
+
+<!-- Fourth Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-center">
+      <h1>Run the Analysis</h1>	  
+    </div>
+  </div>
+</div>
+
+<!-- Fifth Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-center">
+      <h1>Get Your Results</h1>	 
+		  <div class="w3-quarter">
+		    <p>Select Desired Results:</p>
+			<form action="" method="post">
+			  <input type="checkbox" name="favorite1" value="chocolate" /> Chocolate <br>
+			  <input type="checkbox" name="favorite2" value="vanilla" /> Vanilla <br>
+			  <input type="checkbox" name="favorite3" value="mint" /> Mint <br>
+			</form>	
+		  </div>	  
+  		  <div class="w3-rest">
+			<form action="/action_page.php">
+			  E-mail: <input type="email" name="emailaddress">
+			  <input type="submit">
+			</form>
+		  </div>	
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

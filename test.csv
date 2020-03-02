@@ -1,0 +1,7 @@
+﻿ABCD,login,123456
+ABCD,download,abcd@gmail.com
+QWER,upload,file.csv
+FDGS,preprocess,quality_control
+DFSG,preprocess,dimension_reduction
+FDGF,preprocess,normalization
+DFGH,analyze,clustering
