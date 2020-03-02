@@ -1,19 +1,59 @@
 from django.shortcuts import render
 import os
 from django.http import JsonResponse, HttpResponseForbidden, HttpResponseBadRequest
-#import scanpy as sc
-#import anndata
-#from scipy.sparse import csr_matrix
-
+from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+import preprocess.views as preprocess
+import analysis.views as analysis
 
 # Create your views here.
-
+@csrf_exempt
 def render_base(request):
+    if request.method == 'POST':
+        if 'qcOption' in request.POST:
+            option = request.POST['qcOption']
+            print(option)
+            preprocess.qc_SciPipe()
+        elif 'alignOption' in request.POST:
+            option = request.POST['alignOption']
+            print(option)
+            #Check option and call function appropriately
+        elif 'normOption' in request.POST:
+            option = request.POST['normOption']
+            print(option)
+        elif 'dimReducOption' in request.POST:
+            option = request.POST['dimReducOption']
+            print(option)
+        elif 'clusteringOption' in request.POST:
+            option = request.POST['clusteringOption']
+            print(option)
+        elif 'dgeOption' in request.POST:
+            option = request.POST['dgeOption']
+            print(option)
+        elif 'cellAnnotateOption' in request.POST:
+            option = request.POST['cellAnnotateOption']
+            print(option)
+        elif 'trajectoryOption' in request.POST:
+            option = request.POST['trajectoryOption']
+            print(option)
+        else:
+            uploaded_file = request.FILES['doc']
+            fs = FileSystemStorage()
+            fs.save(uploaded_file.name, uploaded_file)
+            pathname = os.path.join(settings.BASE_DIR, settings.MEDIA_ROOT, uploaded_file.name)
+
+            print(pathname)
+            data = upload(pathname)
+            print(data.shape)
     return render(request, "upload/base.html")
 
 
 def upload(pathname):
-
+    import scanpy as sc
+    import os
+    import anndata
+    from scipy.sparse import csr_matrix
     filename, file_extension = os.path.splitext(pathname)
     if file_extension == ".mat":
         from scipy.io import loadmat
@@ -46,11 +86,11 @@ def upload(pathname):
                 #else:
         obs_df = pd.DataFrame(data=obs_d)
         var_df = pd.DataFrame(data=var_d)
-        
+
         data = anndata.AnnData(X=x[keys[largest]],obs=None if obs_df.empty else obs_df,var=None if var_df.empty else var_df)
-        
+
     elif file_extension == ".npz":
-        import numpy as np 
+        import numpy as np
         import pandas as pd
         x = np.load(pathname)
         #pick largest size file
@@ -64,7 +104,7 @@ def upload(pathname):
             if size >= largest_size :
                 largest = i
                 largest_size = size
-        obs_d,var_d = {},{}        
+        obs_d,var_d = {},{}
         for i in range(len(x.files)):
             if i != largest:
                 if len(x[x.files[i]].flatten() ) == len(x[x.files[largest]]):
@@ -85,6 +125,6 @@ def upload(pathname):
         data = sc.read_text(pathname)
     else:
         data = sc.read(pathname)
-    
+
     print(pathname, " uploaded !")
     return data

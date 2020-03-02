@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Assume all the input here is a scanpy anndata object
 
 def qc_SciPipe():
-    pass
+    print("inside qc_scipipe")
 
 
 def alignment_RsuBread():

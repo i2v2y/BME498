@@ -35,7 +35,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 <!-- Content -->
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
-  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> 
+  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
   <div class="w3-center">
   <h4>A Single Cell Analysis Tool</h4>
   <h1 class="w3-xxxlarge w3-animate-bottom">WIR3</h1>
@@ -48,9 +48,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     </div>
      </div>
 	<div class="w3-center w3-padding-16">
-		<form class="box" method="post" action="" enctype="multipart/form-data">
+        <form class="box" method="POST" action="" enctype="multipart/form-data">
 		  <div class="box__input">
-			<input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+			<input class="box__file" type="file" name="doc" id="file" data-multiple-caption="{count} files selected" multiple />
+            <button type="submit">Upload</button>
 		  </div>
 		</form>
 	</div>
@@ -67,52 +68,60 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     	<style>
     	.button1 {padding: 8px 70px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button button1">Quality Control</button>
+        <form id="ps" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button button1">Quality Control</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">ScPipe</option>
+			  <select form="ps" name="qcOption" id="qcOption">
+				<option value="ScPipe">ScPipe</option>
 			  </select>
 			  </div>
+        </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button2 {padding: 8px 90px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button2">Alignment</button>
+            <form id="ps1" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button2">Alignment</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">Rsubread</option>
+			  <select form="ps1" name="alignOption" id="alignOption">
+				<option value="Rsubread">Rsubread</option>
 			  </select>
 			  </div>
+          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button4 {padding: 8px 76px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button4">Normalization</button>
+            <form id="ps2" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button4">Normalization</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">Linnorm</option>
-				<option value="1">Scran</option>
-				<option value="2">Scone</option>
+			  <select form="ps2" name="normOption" id="normOption">
+				<option value="Linnorm">Linnorm</option>
+				<option value="Scran">Scran</option>
+				<option value="Scone">Scone</option>
 			  </select>
 			  </div>
+          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button3 {padding: 8px 56px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button3">Dimension Reduction</button>
+            <form id="ps3" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button3">Dimension Reduction</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">PCA</option>
-				<option value="1">t-SNE</option>
+              <select form="ps3" name="dimReducOption" id="dimReducOption">
+				<option value="PCA">PCA</option>
+				<option value="tSNE">tSNE</option>
 			  </select>
 			  </div>
-		  </div>		  
+          </form>
+		  </div>
     </div>
   </div>
- 
+
 <!-- Grid -->
   <div class="w3-center w3-padding-64">
     <div class="w3-center w3-padding-64">
@@ -122,55 +131,63 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     	<style>
     	.button5 {padding: 8px 90px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button5">Clustering</button>
+            <form id="as" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button5">Clustering</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">Seurat 0.6:</option>
-				<option value="1">RacelD3</option>
-				<option value="2">Seurat_pipe</option>
+                  <select form="as" name="clusteringOption" id="clusteringOption">
+				<option value="Seurat_0.6">Seurat_0.6</option>
+				<option value="RacelD3">RacelD3</option>
+				<option value="Seurat_pipe">Seurat_pipe</option>
 			  </select>
 			  </div>
+          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button6 {padding: 8px 36px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button6">Differential Gene Expression</button>
+            <form id="as1" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button6">Differential Gene Expression</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">Linnorm</option>
-				<option value="1">KNN-smoothing</option>
-				<option value="2">Linnorm+Drimpute</option>
+              <select form="as1" name="dgeOption" id="dgeOption">
+				<option value="Linnorm">Linnorm</option>
+				<option value="KNN-smoothing">KNN-smoothing</option>
+				<option value="Linnorm+Drimpute">Linnorm+Drimpute</option>
 			  </select>
 			  </div>
+          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button7 {padding: 8px 76px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button7">Cell Annotation</button>
+            <form id="as2" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button7">Cell Annotation</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">scMerge_s</option>
-				<option value="1">seMerge_us</option>
-				<option value="2">MNNs</option>
+              <select form="as2" name="cellAnnotateOption" id="cellAnnotateOption">
+				<option value="scMerge_s">scMerge_s</option>
+				<option value="seMerge_us">seMerge_us</option>
+				<option value="MNNs">MNNs</option>
 			  </select>
 			  </div>
+          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button8 {padding: 8px 60px;}
     </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button8">Trajectory Inference</button>
+            <form id="as3" method="POST" action="">
+			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button8">Trajectory Inference</button>
 			  <div style="width: 100%">
-			  <select>
-				<option value="0">PCA</option>
-				<option value="1">Monocle2_DDRTree</option>
-				<option value="2">TSCAN</option>
+                  <select form="as3" name="trajectoryOption" id="trajectoryOption">
+				<option value="PCA">PCA</option>
+				<option value="Monocle2_DDRTree">Monocle2_DDRTree</option>
+				<option value="TSCAN">TSCAN</option>
 			  </select>
 			  </div>
+          </form>
               <div class="w3-center w3-padding-16">
-		  </div>	
+		  </div>
     </div>
     <div>
 <div class="w3-center w3-padding-64">
@@ -178,8 +195,8 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     <button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue w3-center">Run Analysis</button>
 </div>
 
- 
-   
+
+
 
   <!-- Grid -->
   <div class="w3-center w3-padding-52">
@@ -198,13 +215,13 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
  <!-- Contact Container -->
 <form class="w3-container" action="/action_page.php">
   <p>Enter your email and select the results you wish to receive.</p>
-  <p>      
+  <p>
   <label class="w3-text-blue"><b>Name</b></label>
   <input class="w3-input w3-border w3-round-xlarge" name="first" type="text"></p>
-  <p>      
+  <p>
   <label class="w3-text-blue"><b>Email Address</b></label>
   <input class="w3-input w3-border w3-round-xlarge" name="last" type="text"></p>
-  <p>      
+  <p>
   <h2></h2>
   <p>
   <input class="w3-check" type="checkbox">
@@ -218,7 +235,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
   <p>
   <input class="w3-check" type="checkbox">
   <label>Differential Expression</label></p>
-  
+
   <button class="w3-btn w3-blue w3-round-xlarge">Submit</button></p>
 </form>
 
@@ -257,15 +274,15 @@ function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("demodots");
-  if (n > x.length) {slideIndex = 1}    
+  if (n > x.length) {slideIndex = 1}
   if (n < 1) {slideIndex = x.length} ;
   for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+    x[i].style.display = "none";
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" w3-white", "");
   }
-  x[slideIndex-1].style.display = "block";  
+  x[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " w3-white";
 }
 </script>
