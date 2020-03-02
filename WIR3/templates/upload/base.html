@@ -68,56 +68,52 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     	<style>
     	.button1 {padding: 8px 70px;}
     </style>
-        <form id="ps" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button button1">Quality Control</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button button1">Quality Control</button>
 			  <div style="width: 100%">
-			  <select form="ps" name="qcOption" id="qcOption">
+			  <select form="run" name="qcOption" id="qcOption">
 				<option value="ScPipe">ScPipe</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-        </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button2 {padding: 8px 90px;}
     </style>
-            <form id="ps1" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button2">Alignment</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button2">Alignment</button>
 			  <div style="width: 100%">
-			  <select form="ps1" name="alignOption" id="alignOption">
+			  <select form="run" name="alignOption" id="alignOption">
 				<option value="Rsubread">Rsubread</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button4 {padding: 8px 76px;}
     </style>
-            <form id="ps2" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button4">Normalization</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button4">Normalization</button>
 			  <div style="width: 100%">
-			  <select form="ps2" name="normOption" id="normOption">
+			  <select form="run" name="normOption" id="normOption">
 				<option value="Linnorm">Linnorm</option>
 				<option value="Scran">Scran</option>
 				<option value="Scone">Scone</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button3 {padding: 8px 56px;}
     </style>
-            <form id="ps3" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button3">Dimension Reduction</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button3">Dimension Reduction</button>
 			  <div style="width: 100%">
-              <select form="ps3" name="dimReducOption" id="dimReducOption">
+              <select form="run" name="dimReducOption" id="dimReducOption">
 				<option value="PCA">PCA</option>
 				<option value="tSNE">tSNE</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-          </form>
 		  </div>
     </div>
   </div>
@@ -131,68 +127,66 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     	<style>
     	.button5 {padding: 8px 90px;}
     </style>
-            <form id="as" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button5">Clustering</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button5">Clustering</button>
 			  <div style="width: 100%">
-                  <select form="as" name="clusteringOption" id="clusteringOption">
+                  <select form="run" name="clusteringOption" id="clusteringOption">
 				<option value="Seurat_0.6">Seurat_0.6</option>
 				<option value="RacelD3">RacelD3</option>
 				<option value="Seurat_pipe">Seurat_pipe</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button6 {padding: 8px 36px;}
     </style>
-            <form id="as1" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button6">Differential Gene Expression</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button6">Differential Gene Expression</button>
 			  <div style="width: 100%">
-              <select form="as1" name="dgeOption" id="dgeOption">
+              <select form="run" name="dgeOption" id="dgeOption">
 				<option value="Linnorm">Linnorm</option>
 				<option value="KNN-smoothing">KNN-smoothing</option>
 				<option value="Linnorm+Drimpute">Linnorm+Drimpute</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button7 {padding: 8px 76px;}
     </style>
-            <form id="as2" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button7">Cell Annotation</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button7">Cell Annotation</button>
 			  <div style="width: 100%">
-              <select form="as2" name="cellAnnotateOption" id="cellAnnotateOption">
+              <select form="run" name="cellAnnotateOption" id="cellAnnotateOption">
 				<option value="scMerge_s">scMerge_s</option>
 				<option value="seMerge_us">seMerge_us</option>
 				<option value="MNNs">MNNs</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-          </form>
 		  </div>
 		  <div class="w3-quarter">
 		  	<style>
     	.button8 {padding: 8px 60px;}
     </style>
-            <form id="as3" method="POST" action="">
-			<button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button8">Trajectory Inference</button>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button8">Trajectory Inference</button>
 			  <div style="width: 100%">
-                  <select form="as3" name="trajectoryOption" id="trajectoryOption">
+              <select form="run" name="trajectoryOption" id="trajectoryOption">
 				<option value="PCA">PCA</option>
 				<option value="Monocle2_DDRTree">Monocle2_DDRTree</option>
 				<option value="TSCAN">TSCAN</option>
+                <option value="">None</option>
 			  </select>
 			  </div>
-          </form>
               <div class="w3-center w3-padding-16">
 		  </div>
     </div>
     <div>
 <div class="w3-center w3-padding-64">
     <div class="w3-center w3-padding-64">
-    <button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue w3-center">Run Analysis</button>
+    <form id="run" method="POST" action="">
+        <button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue w3-center">Run Analysis</button>
+    </form>
 </div>
 
 

@@ -11,32 +11,38 @@ import analysis.views as analysis
 @csrf_exempt
 def render_base(request):
     if request.method == 'POST':
+        #checking what the request is for
         if 'qcOption' in request.POST:
-            option = request.POST['qcOption']
-            print(option)
-            preprocess.qc_SciPipe()
-        elif 'alignOption' in request.POST:
-            option = request.POST['alignOption']
-            print(option)
-            #Check option and call function appropriately
-        elif 'normOption' in request.POST:
-            option = request.POST['normOption']
-            print(option)
-        elif 'dimReducOption' in request.POST:
-            option = request.POST['dimReducOption']
-            print(option)
-        elif 'clusteringOption' in request.POST:
-            option = request.POST['clusteringOption']
-            print(option)
-        elif 'dgeOption' in request.POST:
-            option = request.POST['dgeOption']
-            print(option)
-        elif 'cellAnnotateOption' in request.POST:
-            option = request.POST['cellAnnotateOption']
-            print(option)
-        elif 'trajectoryOption' in request.POST:
-            option = request.POST['trajectoryOption']
-            print(option)
+            options = request.POST.items()
+            for key, value in options:
+######### Call Preprocess & Analysis Functions
+                if value == 'ScPipe':
+                    preprocess.qc_SciPipe()
+                if value == 'Rsubread':
+                    preprocess.alignment_RsuBread()
+                if value == 'Linnorm':
+                    if key == 'normOption':
+                        preprocess.normalization_Linnorm()
+                    else:
+                        analysis.diffExpression_Linnorm()
+                if value == 'Scran':
+                    preprocess.normalization_Scran()
+                if value == 'Scone':
+                    preprocess.normalization_Scone()
+                if value == 'PCA':
+                    if key == 'dimReducOption':
+                        preprocess.dimReduction_PCA()
+                if value == 'tSNE':
+                    preprocess.dimReduction_tSNE()
+                if value == 'Seurat_0.6':
+                    analysis.clustering_seurat_06()
+                if value == 'Seurat_pipe':
+                    analysis.clustering_seurat_Pipe()
+                if value == 'RacelD3':
+                    analysis.clustering_seurat_RaceID3()
+                #if value == 'KNN-smoothing':
+                #if value == 'Linnorm+Drimpute':
+                #etc....
         else:
             uploaded_file = request.FILES['doc']
             fs = FileSystemStorage()

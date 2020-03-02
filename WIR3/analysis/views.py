@@ -3,22 +3,20 @@ from django.shortcuts import render
 # Create your views here.
 # Assume all the input here is a scanpy anndata object
 
-def clustering_seurat_0.6():
-    pass
+def clustering_seurat_06():
+    print("a_seurat_06()")
 
 def clustering_seurat_Pipe():
-    pass
+    print("a_seurat_Pipe()")
 
 def clustering_seurat_RaceID3():
-    pass
+    print("a_RaceID3()")
 
 def diffExpression_Linnorm():
-    pass
-
+    print("a_Linnorm()")
 
 def cellAnnotation_scMerge_s():
-    pass
+    print("a_scMerge_s()")
 
 def trajectInference_Slingshot():
-    pass
-
+    print("a_Slingshot()")
