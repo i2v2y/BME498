@@ -33,20 +33,21 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 </div>
 
 <!-- Content -->
-<div class="w3-center" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
-
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> 
   <div class="w3-center">
-    <h1><b>WIR3</b></h1>
-    <p>A Single-Cell Analysis Solution</p>
-  </div>
+  <h4>A Single Cell Analysis Tool</h4>
+  <h1 class="w3-xxxlarge w3-animate-bottom">WIR3</h1>
+    <div class="w3-padding-32">
 
  <!-- Grid -->
   <div class="w3-center">
     <div class="w3-center w3-padding-16">
-      <span class="w3-xlarge">Select a File to Upload</span>
+      <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Select a File to Upload</span>
     </div>
      </div>
-	<div class="w3-center">
+	<div class="w3-center w3-padding-16">
 		<form class="box" method="post" action="" enctype="multipart/form-data">
 		  <div class="box__input">
 			<input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
@@ -57,13 +58,16 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 
   <!-- Grid -->
-  <div class="w3-center">
-    <div class="w3-center w3-padding-16">
-      <span class="w3-xlarge">Select Pre-Processing Steps</span>
+  <div class="w3-center w3-padding-64">
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Select Pre-Processing Steps</span>
     </div>
 
     <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Quality Control</button>
+    	<style>
+    	.button1 {padding: 8px 70px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button button1">Quality Control</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">ScPipe</option>
@@ -71,7 +75,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </div>
 		  </div>
 		  <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Alignment</button>
+		  	<style>
+    	.button2 {padding: 8px 90px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button2">Alignment</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">Rsubread</option>
@@ -79,7 +86,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </div>
 		  </div>
 		  <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Normalization</button>
+		  	<style>
+    	.button4 {padding: 8px 76px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button4">Normalization</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">Linnorm</option>
@@ -89,7 +99,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </div>
 		  </div>
 		  <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Dimension Reduction</button>
+		  	<style>
+    	.button3 {padding: 8px 56px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button3">Dimension Reduction</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">PCA</option>
@@ -102,11 +115,14 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
  
 <!-- Grid -->
   <div class="w3-center w3-padding-64">
-    <div class="w3-center w3-padding-16">
-      <span class="w3-xlarge">Select Analysis Steps</span>
+    <div class="w3-center w3-padding-64">
+      <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Select Analysis Steps</span>
     </div>
     <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Clustering</button>
+    	<style>
+    	.button5 {padding: 8px 90px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button5">Clustering</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">Seurat 0.6:</option>
@@ -116,7 +132,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </div>
 		  </div>
 		  <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Differential Gene Expression</button>
+		  	<style>
+    	.button6 {padding: 8px 36px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button6">Differential Gene Expression</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">Linnorm</option>
@@ -126,7 +145,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </div>
 		  </div>
 		  <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Cell Annotation</button>
+		  	<style>
+    	.button7 {padding: 8px 76px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button7">Cell Annotation</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">scMerge_s</option>
@@ -136,7 +158,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </div>
 		  </div>
 		  <div class="w3-quarter">
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue">Trajectory Inference</button>
+		  	<style>
+    	.button8 {padding: 8px 60px;}
+    </style>
+			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button8">Trajectory Inference</button>
 			  <div style="width: 100%">
 			  <select>
 				<option value="0">PCA</option>
@@ -146,13 +171,18 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </div>
               <div class="w3-center w3-padding-16">
 		  </div>	
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue w3-center">Run Analysis</button>
     </div>
+    <div>
+<div class="w3-center w3-padding-64">
+    <div class="w3-center w3-padding-64">
+    <button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue w3-center">Run Analysis</button>
+</div>
+
  
    
 
   <!-- Grid -->
-  <div class="w3-row-padding" id="about">
+  <div class="w3-center w3-padding-52">
     <div class="w3-center w3-padding-64">
       <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Visualization Panel</span>
 	</div>
