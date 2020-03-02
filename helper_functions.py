@@ -5,6 +5,9 @@
 
 
 def upload(pathname):
+    import sys
+    sys.path.append("/Users/yumengluo/Desktop/claire/scanpy")
+
     import scanpy as sc
     import os
     import anndata
@@ -96,31 +99,49 @@ def quality_control():
     return
 
 def dimension_reduction(data):
-    print("Preprocessing: Executing Dimension Reduction...")
-    #get true labels
-    _,n = data.obs.shape
-    if n > 1:
-        true_labs = data.obs.iloc[:,n-1]
-    else :
-        true_labs = data.obs
-    
     import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+    #get true labels
+    m,n = data.obs.shape
+    if n >0:
+        labels = pd.unique( data.obs.iloc[:,n-1])
+    else:
+        labels = pd.unique( data.obs.index)
+    if len(labels)!=0:
+        num_cluster = len(labels)
+    else:
+        num_cluster = m
+    #map colors
+    cmap = plt.get_cmap('Spectral')
+    colors = [cmap(i) for i in np.linspace(0, 1, num_cluster)]
+    color_list = []
+    for i in range (m):
+        if n>0:
+            color_list.append(colors[np.where(data.obs.iloc[i,n-1] == labels)[0][0]])
+        else:
+            color_list.append(colors[i])
+
+
+    print("Preprocessing: Executing Dimension Reduction...")
     #TSNE
     from openTSNE import TSNE
     tsne_embedded = TSNE().fit(data.X)
     fig = plt.figure( figsize=(16,7) )
-    plt.scatter(tsne_embedded[:, 0], tsne_embedded[:, 1], c=true_labs, s=1.5, cmap='Spectral')
+    import warnings
+    warnings.filterwarnings("ignore", module="matplotlib")
+    plt.scatter(tsne_embedded[:, 0], tsne_embedded[:, 1], c=color_list, s=1.5)
     plt.title(('t-SNE visualization'))
-    
+
+
     #UMAP
     import umap
     umap_embedded = umap.UMAP(n_neighbors=5,
                           min_dist=0.3,
                           metric='correlation').fit_transform(data.X)
     fig = plt.figure( figsize=(16,7) )
-    plt.scatter(umap_embedded[:, 0], umap_embedded[:, 1], c=true_labs, s=1.5, cmap='Spectral')
+    plt.scatter(umap_embedded[:, 0], umap_embedded[:, 1], c=color_list, s=1.5)
     plt.title('UMAP visualization')
-    
     return tsne_embedded, umap_embedded
 
 def alignment():
@@ -131,11 +152,55 @@ def normalization():
     print("Preprocessing: Executing normalization...")
     return
 
-def clustering():
+def clustering(adata):
     print("Analyzation: Executing clustering...")
-    return
+    import sys
+    sys.path.append("/Users/yumengluo/Desktop/claire/scanpy")
 
-def DE(data, labels, topn, num_cluster, gene_labels = None):
+    import scanpy as sc
+    import scipy
+    sc.settings.set_figure_params(dpi=80,figsize=(8,8))
+    sc.pp.normalize_total(adata, target_sum=1e4)
+    adata.X = scipy.sparse.csr_matrix(adata.X)
+    sc.pp.log1p(adata)
+    sc.pp.highly_variable_genes(adata, min_mean=0.0125, max_mean=3, min_disp=0.5)
+    adata = adata[:, adata.var.highly_variable]
+    sc.pp.scale(adata, max_value=10)
+    sc.tl.pca(adata, svd_solver='arpack')
+    sc.pp.neighbors(adata, n_neighbors=10, n_pcs=40)
+    sc.tl.umap(adata)
+    sc.tl.leiden(adata)
+    sc.pl.umap(adata, color=['leiden'])
+    return adata
+
+def DE(dataframe, topn, gene_labels = None):
+    
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import numpy as np
+    data = dataframe.X.transpose()
+    
+    #get true labels
+    m,n = dataframe.obs.shape
+    if n >0:
+        labels = dataframe.obs.iloc[:,n-1].to_numpy()
+        uni_labels = pd.unique( dataframe.obs.iloc[:,n-1])
+    else:
+        labels = np.ones(m)
+        uni_labels = pd.unique( labels)
+        topn = 50
+    num_cluster = len(uni_labels)
+    #map colors
+    cmap = plt.get_cmap('Spectral')
+    colors = [cmap(i) for i in np.linspace(0, 1, num_cluster)]
+    color_list = []
+    for i in range (m):
+        if n>0:
+            color_list.append(colors[np.where(dataframe.obs.iloc[i,n-1] == uni_labels)[0][0]])
+        else:
+            color_list.append(colors)
+
+    
     print("Analyzation: Executing Differential Gene Analysis...")
     #Identification of marker genes and plots gene-cell heatmap of topn markers
     from scipy.io import loadmat
@@ -278,7 +343,7 @@ def login(userid, password):
     return
 
 
-# In[2]:
+# In[127]:
 
 
 def parse_request(data):
@@ -317,39 +382,68 @@ with open('test.csv', newline='') as csvfile:
 parse_request(data)
 
 
-# In[59]:
+# In[28]:
 
 
-#filename = "/Users/yumengluo/Desktop/claire/research/Test_5_Zeisel.mat"
-filename = '/Users/yumengluo/Desktop/claire/research/cortex.npz'
+filename = "/Users/yumengluo/Desktop/claire/research/Test_5_Zeisel.mat"
+#filename = '/Users/yumengluo/Desktop/claire/research/cortex.npz'
 #filename = '/Users/yumengluo/Desktop/claire/BME498/data/filtered_gene_bc_matrices/hg19/matrix.mtx'
 
 data = upload(filename)
 
 
-# In[39]:
+# In[31]:
 
 
-dimension_reduction(data)
+tsne_embedded, umap_embedded = dimension_reduction(data)
 
 
-# In[60]:
+# In[132]:
 
 
-#get true labels
-_,n = data.obs.shape
-if n > 1:
-    true_labs = data.obs.iloc[:,n-1].to_numpy()
-else :
-    true_labs = data.obs.to_numpy()
-num_cluster = len(np.unique(true_labs))
-DE(data.X.transpose(), true_labs, 10, num_cluster, gene_labels = None)
+DE(data, 10,  gene_labels = None)
 
 
-# In[53]:
+# In[23]:
 
 
-data.X.shape
+clustering(data)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[30]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[29]:
+
+
+
 
 
 # In[ ]:
