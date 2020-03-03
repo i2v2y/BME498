@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
@@ -34,20 +35,18 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 <!-- Content -->
 <!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
-  <div class="w3-center">
+  <div class="w3-center w3-padding-64">
   <h4>A Single Cell Analysis Tool</h4>
   <h1 class="w3-xxxlarge w3-animate-bottom">WIR3</h1>
     <div class="w3-padding-32">
 
  <!-- Grid -->
   <div class="w3-center">
-    <div class="w3-center w3-padding-16">
+    <div class="w3-center w3-padding-64 w3-light-grey">
       <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Select a File to Upload</span>
     </div>
      </div>
-	<div class="w3-center w3-padding-16">
+	<div class="w3-center w3-padding-16 w3-light-grey">
         <form class="box" method="POST" action="" enctype="multipart/form-data">
 		  <div class="box__input">
 			<input class="box__file" type="file" name="doc" id="file" data-multiple-caption="{count} files selected" multiple />
@@ -59,12 +58,13 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 
   <!-- Grid -->
-  <div class="w3-center w3-padding-64">
+  <div class="w3-center w3-padding-4">
     <div class="w3-center w3-padding-64">
       <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Select Pre-Processing Steps</span>
     </div>
+    </div>
 
-    <div class="w3-quarter">
+    <div class="w3-quarter w3-center">
     	<style>
     	.button1 {padding: 8px 70px;}
     </style>
@@ -76,19 +76,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </select>
 			  </div>
 		  </div>
-		  <div class="w3-quarter">
-		  	<style>
-    	.button2 {padding: 8px 90px;}
-    </style>
-			<button class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue button2">Alignment</button>
-			  <div style="width: 100%">
-			  <select form="run" name="alignOption" id="alignOption">
-				<option value="Rsubread">Rsubread</option>
-                <option value="">None</option>
-			  </select>
-			  </div>
-		  </div>
-		  <div class="w3-quarter">
+		  <div class="w3-center w3-quarter">
 		  	<style>
     	.button4 {padding: 8px 76px;}
     </style>
@@ -102,7 +90,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </select>
 			  </div>
 		  </div>
-		  <div class="w3-quarter">
+		  <div class="w3-quarter w3-center">
 		  	<style>
     	.button3 {padding: 8px 56px;}
     </style>
@@ -120,10 +108,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 <!-- Grid -->
   <div class="w3-center w3-padding-64">
-    <div class="w3-center w3-padding-64">
+    <div class="w3-center w3-padding-64 w3-container w3-light-grey">
       <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Select Analysis Steps</span>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-quarter w3-light-grey">
     	<style>
     	.button5 {padding: 8px 90px;}
     </style>
@@ -137,7 +125,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </select>
 			  </div>
 		  </div>
-		  <div class="w3-quarter">
+		  <div class="w3-quarter w3-light-grey">
 		  	<style>
     	.button6 {padding: 8px 36px;}
     </style>
@@ -151,7 +139,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </select>
 			  </div>
 		  </div>
-		  <div class="w3-quarter">
+		  <div class="w3-quarter w3-light grey">
 		  	<style>
     	.button7 {padding: 8px 76px;}
     </style>
@@ -165,7 +153,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			  </select>
 			  </div>
 		  </div>
-		  <div class="w3-quarter">
+		  <div class="w3-quarter w3-light-grey">
 		  	<style>
     	.button8 {padding: 8px 60px;}
     </style>
@@ -182,8 +170,9 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 		  </div>
     </div>
     <div>
-<div class="w3-center w3-padding-64">
-    <div class="w3-center w3-padding-64">
+<div class="w3-center w3-padding-64 w3-light-grey">
+</div>
+    <div class="w3-center w3-padding-16 w3-light-grey">
     <form id="run" method="POST" action="">
         <button type="submit" class="w3-button w3-round-xlarge w3-white w3-border w3-border-blue w3-center">Run Analysis</button>
     </form>
@@ -202,12 +191,12 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 
   <!-- Contact -->
-  <div class="w3-center w3-padding-64" id="contact">
+  <div class="w3-center w3-padding-64 w3-light-grey" id="contact">
     <span class="w3-xlarge w3-bottombar w3-border-blue w3-padding-16">Results</span>
   </div>
 
  <!-- Contact Container -->
-<form class="w3-container" action="/action_page.php">
+<form class="w3-container w3-light-grey" action="/action_page.php">
   <p>Enter your email and select the results you wish to receive.</p>
   <p>
   <label class="w3-text-blue"><b>Name</b></label>
@@ -236,19 +225,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 <!-- Footer -->
 
-<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
-  <h4>Footer</h4>
-  <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <div class="w3-xlarge w3-section">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </div>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
+
 
 
 <script>
