@@ -10,23 +10,23 @@ import numpy as np
 # Assume all the input here is a scanpy anndata object
 
 def clustering_seurat_06():
-    print("a_seurat_06()")
+    print("Performing seurat_06 for clustering...")
 
 def clustering_seurat_Pipe():
-    print("a_seurat_Pipe()")
+    print("Performing seurat_Pipe for clustering...")
 
 def clustering_seurat_RaceID3():
-    print("a_RaceID3()")
+    print("Performing RaceID3 for clustering...")
 
 def diffExpression_Linnorm():
-    print("a_Linnorm()")
+    print("Performing Linnorm for differential gene analysis...")
 
 
 def cellAnnotation_scMerge_s():
-    print("a_scMerge_s()")
+    print("Performing scMerge_s for cell annotation...")
 
 def trajectInference_Slingshot():
-	print("a_Slingshot()")
+	print("Performing Slingshot for trajectory inference...")
 
 
 

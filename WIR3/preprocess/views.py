@@ -4,22 +4,19 @@ from django.shortcuts import render
 # Assume all the input here is a scanpy anndata object
 
 def qc_SciPipe():
-    print("p_scipipe()")
-
-def alignment_RsuBread():
-    print("p_RsuBread()")
+    print("Performing  scipipe for quality control...")
 
 def normalization_Linnorm():
-    print("p_Linnorm()")
+    print("Performing Linnorm for normalization...")
 
 def normalization_Scran():
-    print("p_scran()")
+    print("Performing Scran for normalization...")
 
 def normalization_Scone():
-    print("p_Scone()")
+    print("Performing Scone for normalization...")
 
 def dimReduction_PCA():
-    print("p_pca()")
+    print("Performing PCA for dimension reduction...")
 
 def dimReduction_tSNE():
-    print("p_tSNE()")
+    print("Performing tSNE for dimension reduction...")
