@@ -10,22 +10,24 @@ import numpy as np
 # Assume all the input here is a scanpy anndata object
 
 def clustering_seurat_06():
-    pass
+    print("a_seurat_06()")
 
 def clustering_seurat_Pipe():
-    pass
+    print("a_seurat_Pipe()")
 
 def clustering_seurat_RaceID3():
-    pass
+    print("a_RaceID3()")
 
 def diffExpression_Linnorm():
-    pass
+    print("a_Linnorm()")
+
 
 def cellAnnotation_scMerge_s():
-    pass
+    print("a_scMerge_s()")
 
 def trajectInference_Slingshot():
-    pass
+	print("a_Slingshot()")
+
 
 
 def clustering_demo(adata):
@@ -160,3 +162,4 @@ def DE(dataframe, topn, gene_labels = None):
     #plt.savefig(filename)
     plt.show()
     return sdata
+
