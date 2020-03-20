@@ -1,21 +1,19 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[40]:
-
+import sys
+import os
+import warnings
+import numpy as np
+import pandas as pd
+import scanpy as sc
+import scipy
+from scipy.io import loadmat
+from scipy.sparse import csr_matrix
+import matplotlib.pyplot as plt
 
 def upload(pathname):
-    import sys
-    sys.path.append("/Users/yumengluo/Desktop/claire/scanpy")
 
-    import scanpy as sc
-    import os
     import anndata
-    from scipy.sparse import csr_matrix
     filename, file_extension = os.path.splitext(pathname)
     if file_extension == ".mat":
-        from scipy.io import loadmat
-        import pandas as pd
         x = loadmat(pathname)
         keys = []
         for key in x.keys():
@@ -48,8 +46,6 @@ def upload(pathname):
         data = anndata.AnnData(X=x[keys[largest]].todense(),obs=None if obs_df.empty else obs_df,var=None if var_df.empty else var_df)
         
     elif file_extension == ".npz":
-        import numpy as np 
-        import pandas as pd
         x = np.load(pathname)
         #pick largest size file
         largest = 0
@@ -94,14 +90,18 @@ def download(email):
     #TODO
     return
 
-def quality_control():
+def quality_control(data):
     print("Preprocessing: Executing QC...")
-    return
+    import seaborn as sns
+    sc.pp.calculate_qc_metrics(data, inplace=True)
+    sns.jointplot(
+        "log1p_total_counts", "log1p_n_genes_by_counts",
+        data=data.obs, kind="hex"
+    )
+    plt.show()
+    return data
 
 def dimension_reduction(data):
-    import matplotlib.pyplot as plt
-    import pandas as pd
-    import numpy as np
     #get true labels
     m,n = data.obs.shape
     if n >0:
@@ -128,7 +128,6 @@ def dimension_reduction(data):
     from openTSNE import TSNE
     tsne_embedded = TSNE().fit(data.X)
     fig = plt.figure( figsize=(16,7) )
-    import warnings
     warnings.filterwarnings("ignore", module="matplotlib")
     plt.scatter(tsne_embedded[:, 0], tsne_embedded[:, 1], c=color_list, s=1.5)
     plt.title(('t-SNE visualization'))
@@ -154,11 +153,6 @@ def normalization():
 
 def clustering(adata):
     print("Analyzation: Executing clustering...")
-    import sys
-    sys.path.append("/Users/yumengluo/Desktop/claire/scanpy")
-
-    import scanpy as sc
-    import scipy
     sc.settings.set_figure_params(dpi=80,figsize=(8,8))
     sc.pp.normalize_total(adata, target_sum=1e4)
     adata.X = scipy.sparse.csr_matrix(adata.X)
@@ -174,10 +168,6 @@ def clustering(adata):
     return adata
 
 def DE(dataframe, topn, gene_labels = None):
-    
-    import matplotlib.pyplot as plt
-    import pandas as pd
-    import numpy as np
     data = dataframe.X.transpose()
     
     #get true labels
@@ -203,12 +193,8 @@ def DE(dataframe, topn, gene_labels = None):
     
     print("Analyzation: Executing Differential Gene Analysis...")
     #Identification of marker genes and plots gene-cell heatmap of topn markers
-    from scipy.io import loadmat
-    from scipy.sparse import csr_matrix
-    import numpy as np 
     from sklearn.cluster import KMeans
     import importlib
-    import matplotlib.pyplot as plt
     #TODO: add labels for the genes
     #data gene expression matrix gene x cell
     num_gene, num_cell = data.shape
@@ -302,7 +288,7 @@ def visualize():
 
 def preprocess(feature, userid, data ):
     if feature == "quality_control":
-        quality_control()
+        quality_control(data)
     elif feature == "dimension_reduction": 
         dimension_reduction(data)
     elif feature == "alignment": 
@@ -385,12 +371,12 @@ parse_request(data)
 # In[28]:
 
 
-filename = "/Users/yumengluo/Desktop/claire/research/Test_5_Zeisel.mat"
-#filename = '/Users/yumengluo/Desktop/claire/research/cortex.npz'
-#filename = '/Users/yumengluo/Desktop/claire/BME498/data/filtered_gene_bc_matrices/hg19/matrix.mtx'
+filename = "./testdata/Test_5_Zeisel.mat"
+#filename = './testdata/cortex.npz'
+#filename = './testdata/hg19/matrix.mtx'
 
 data = upload(filename)
-
+data = quality_control(data)
 
 # In[31]:
 
@@ -408,52 +394,4 @@ DE(data, 10,  gene_labels = None)
 
 
 clustering(data)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[30]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[29]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
