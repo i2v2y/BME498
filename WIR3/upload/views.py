@@ -6,43 +6,58 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import preprocess.views as preprocess
 import analysis.views as analysis
+import anndata
 
 # Create your views here.
+
 @csrf_exempt
 def render_base(request):
     if request.method == 'POST':
         #checking what the request is for
         if 'qcOption' in request.POST:
+            readPath = os.path.join(settings.BASE_DIR, settings.MEDIA_ROOT, 'adata.h5ad')
+            data = anndata.read_h5ad(readPath)
             options = request.POST.items()
             for key, value in options:
 ######### Call Preprocess & Analysis Functions
                 if value == 'ScPipe':
-                    preprocess.qc_SciPipe()
-                if value == 'Rsubread':
-                    preprocess.alignment_RsuBread()
+                    preprocess.qc_SciPipe(data)
                 if value == 'Linnorm':
                     if key == 'normOption':
-                        preprocess.normalization_Linnorm()
+                        preprocess.normalization_Linnorm(data)
                     else:
-                        analysis.diffExpression_Linnorm()
+                        analysis.diffExpression_Linnorm(data)
                 if value == 'Scran':
-                    preprocess.normalization_Scran()
+                    preprocess.normalization_Scran(data)
                 if value == 'Scone':
-                    preprocess.normalization_Scone()
+                    preprocess.normalization_Scone(data)
                 if value == 'PCA':
                     if key == 'dimReducOption':
-                        preprocess.dimReduction_PCA()
+                        preprocess.dimReduction_PCA(data)
+                    else:
+                        analysis.trajectInference_PCA()
                 if value == 'tSNE':
-                    preprocess.dimReduction_tSNE()
+                    preprocess.dimReduction_tSNE(data)
                 if value == 'Seurat_0.6':
-                    analysis.clustering_seurat_06()
+                    analysis.clustering_seurat_06(data)
                 if value == 'Seurat_pipe':
-                    analysis.clustering_seurat_Pipe()
+                    analysis.clustering_seurat_Pipe(data)
                 if value == 'RacelD3':
-                    analysis.clustering_seurat_RaceID3()
-                #if value == 'KNN-smoothing':
-                #if value == 'Linnorm+Drimpute':
-                #etc....
+                    analysis.clustering_seurat_RaceID3(data)
+                if value == 'KNN-smoothing':
+                    analysis.diffExpression_KNNSmoothing(data)
+                if value == 'Linnorm+Drimpute':
+                    analysis.diffExpression_LinnormDrimpute(data)
+                if value == 'scMerge_s':
+                    analysis.cellAnnotation_scMerge_s()
+                if value == 'seMerge_us':
+                    analysis.cellAnnotation_seMerge_us()
+                if value == 'MNNs':
+                    analysis.cellAnnotation_MNNs()
+                if value == 'Monocle2_DDRTree':
+                    analysis.trajectInference_Monocle_DDRTree()
+                if value == 'TSCAN':
+                    analysis.trajectInference_Tscan()
         else:
             uploaded_file = request.FILES['doc']
             fs = FileSystemStorage()
@@ -51,9 +66,17 @@ def render_base(request):
 
             print(pathname)
             data = upload(pathname)
+
+            savePath = os.path.join(settings.BASE_DIR, settings.MEDIA_ROOT, 'adata.h5ad')
+
             print(data.shape)
+            data.write(savePath)
     return render(request, "upload/base.html")
 
+def download(email):
+    print("link sent to ", email)
+    #TODO
+    return
 
 def upload(pathname):
     import scanpy as sc
